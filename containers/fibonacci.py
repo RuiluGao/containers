@@ -83,7 +83,7 @@ class FibIter:
         self.f1 = 1
         self.f2 = 0
 
-    def __next__(self, n):
+    def __next__(self):
         if self.n is not None and self.n <= self.i:
             raise StopIteration
         else:
