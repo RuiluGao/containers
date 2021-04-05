@@ -42,13 +42,13 @@ def range(a, b=None, c=None):
         end = a
         while begin < end:
             begin += 1
-            yield begin-1
+            yield begin - 1
     elif b is not None and c is None:
         begin = a
         end = b
         while begin < end:
             begin += 1
-            yield begin-1
+            yield begin - 1
     elif b is not None and c is not None:
         begin = a
         end = b
@@ -57,10 +57,10 @@ def range(a, b=None, c=None):
                 return []
             else:
                 begin += c
-                yield begin-c
+                yield begin - c
         while begin > end:
             if c > 0:
                 return []
             else:
                 begin += c
-                yield begin-c
+                yield begin - c
