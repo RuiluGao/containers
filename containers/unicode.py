@@ -121,4 +121,4 @@ class NormStrIter:
             raise StopIteration
         else:
             self.i += 1
-            return self.text[self.i-1]
+            return self.text[self.i - 1]
