@@ -117,8 +117,8 @@ class NormStrIter:
         '''
         Return each item for the normalized string.
         '''
-        if self.i == len(self.text) - 1:
+        if self.i == len(self.text):
             raise StopIteration
         else:
-            return self.text[self.i]
             self.i += 1
+            return self.text[self.i-1]
