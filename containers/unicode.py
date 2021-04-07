@@ -94,7 +94,8 @@ class NormalizedStr:
         '''
         stringa = unicodedata.normalize(self.nf, self.__str__())
         stringb = unicodedata.normalize(self.nf, b.__str__())
-        return stringa + stringb
+        new_string = unicodedata.normalize(self.nf, stringa + stringb)
+        return NormalizedStr(new_string, self.nf)
 
     def __iter__(self):
         '''
