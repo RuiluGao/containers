@@ -92,9 +92,9 @@ class NormalizedStr:
         Therefore, you must renormalize the strings after
         adding them together.
         '''
-        stringA = unicodedata.normalize(self.nf, self.__str__())
-        stringB = unicodedata.normalize(self.nf, b.__str__())
-        return stringA + stringB
+        stringa = unicodedata.normalize(self.nf, self.__str__())
+        stringb = unicodedata.normalize(self.nf, b.__str__())
+        return stringa + stringa
 
     def __iter__(self):
         '''
