@@ -1,7 +1,5 @@
 <<<<<<< HEAD
 # containers
-=======
-# containers
 
 Build status:
 
