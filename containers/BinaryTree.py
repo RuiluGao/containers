@@ -203,11 +203,13 @@ class BinaryTree():
         if a left child exists, calculate the _height of the left child;
         if a right child exists, calculate the _height of the right child;
         '''
-        h1 = 0
-        h2 = 0
-        if node.left is not None:
-            h1 = BinaryTree._height(node.left)
-        if node.right is not None:
-            h2 = BinaryTree._height(node.right)
-
-        return max(h1, h2) + 1
+        if node is not None:
+            h1 = 0
+            h2 = 0
+            if node.left is not None:
+                h1 = BinaryTree._height(node.left)
+            if node.right is not None:
+                h2 = BinaryTree._height(node.right)
+            return max(h1, h2) + 1
+        else:
+            return 0
