@@ -190,7 +190,7 @@ class BinaryTree():
         HINT:
         See how the __len__ method calls its helper staticmethod.
         '''
-        return BinaryTree._height(self.root)-1
+        return BinaryTree._height(self.root) - 1
 
     @staticmethod
     def _height(node):
