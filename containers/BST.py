@@ -18,6 +18,8 @@ class BST(BinaryTree):
         then each element of xs needs to be inserted into the BST.
         '''
         super().__init__()
+        self.xs = xs
+        self.insert_list(xs)
 
     def __repr__(self):
         '''
@@ -122,7 +124,7 @@ class BST(BinaryTree):
         if self.root is None:
             return False
         else:
-            return BST._find(self.root)
+            return BST._find(value, self.root)
 
     @staticmethod
     def _find(value, node):
@@ -193,6 +195,48 @@ class BST(BinaryTree):
         HINT:
         Use a recursive helper function.
         '''
+        if value in self:
+            if self.root.value == value:
+                if self.root.right:
+                    swap = BST._find_smallest(self.root.right)
+                    self.root.value = swap
+                    self.root.right = BST._remove(self.root.right, swap)
+                    return self.root
+                elif self.root.left:
+                    swap = BST._find_largest(self.root.left)
+                    self.root.value = swap
+                    self.root.left = BST._remove(self.root.left, swap)
+                    return self.root
+                else:
+                    self.root = None
+                    return self.root
+            else:
+                return BST._remove(self.root, value)
+        else:
+            pass
+
+    @staticmethod
+    def _remove(root, value):
+        if root is None:
+            return root
+        elif value < root.value:
+            root.left = BST._remove(root.left, value)
+        elif value > root.value:
+            root.right = BST._remove(root.right, value)
+        else:
+            if root.left is None:
+                change = root.right
+                root = None
+                return change
+            elif root.right is None:
+                change = root.left
+                root = None
+                return change
+            else:
+                change = BST._find_largest(root.left)
+                root.value = change
+                root.left = BST._remove(root.left, change)
+            return root
 
     def remove_list(self, xs):
         '''
@@ -204,3 +248,5 @@ class BST(BinaryTree):
         HINT:
         See the insert_list function.
         '''
+        for x in xs:
+            self.remove(x)
