@@ -132,13 +132,15 @@ class BST(BinaryTree):
         FIXME:
         Implement this function.
         '''
-        assert node is not None
-        if value < node.value:
-            BST._find(value, node.left)
-        elif value > node.value:
-            BST._find(value, node.right)
-        elif value == node.value:
-            return True
+        if node:
+            if value < node.value:
+                BST._find(value, node.left)
+            elif value > node.value:
+                BST._find(value, node.right)
+            elif value == node.value:
+                return True
+        else:
+            return False
 
     def find_smallest(self):
         '''
