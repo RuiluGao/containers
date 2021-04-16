@@ -132,12 +132,12 @@ class BST(BinaryTree):
         FIXME:
         Implement this function.
         '''
-        if node:
-            if value < node.value:
-                BST._find(value, node.left)
-            elif value > node.value:
-                BST._find(value, node.right)
-            elif value == node.value:
+        if node is not None:
+            if value > node.value:
+                return BST._find(value, node.right)
+            elif value < node.value:
+                return BST._find(value, node.left)
+            else:
                 return True
         else:
             return False
