@@ -238,7 +238,7 @@ class BST(BinaryTree):
                 change = BST._find_largest(root.left)
                 root.value = change
                 root.left = BST._remove(root.left, change)
-            return root
+        return root
 
     def remove_list(self, xs):
         '''
