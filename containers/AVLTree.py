@@ -79,6 +79,7 @@ class AVLTree(BST):
             return None
         return copy
 
+    @staticmethod
     def _left_rotate(node):
         '''
         FIXME:
