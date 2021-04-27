@@ -174,3 +174,65 @@ class Heap(BinaryTree):
         It's possible to do it with only a single helper (or no helper at all),
         but I personally found dividing up the code into two made the most sense.
         '''
+        if self.root is None:
+            pass
+        else:
+            leng = self.__len__()
+            binary_num = "{0:b}".format(leng)[1:]
+            last, self.root = Heap._remove_bottom_right(self.root, binary_num)
+            if self.root:
+                self.root.value = last
+            self.root = Heap._trickle(self.root)
+
+    @staticmethod
+    def _remove_bottom_right(node, binary_num):
+        tobedeleted = ""
+        if len(binary_num) == 0:
+            return None, None
+
+        if binary_num[0] == '0':
+            if len(binary_num) == 1:
+                tobedeleted = node.left.value
+                node.left = None
+            else:
+                tobedeleted, node.left = Heap._remove_bottom_right(
+                    node.left, binary_num[1:])
+
+        if binary_num[0] == '1':
+            if len(binary_num) == 1:
+                tobedeleted = node.right.value
+                node.right = None
+            else:
+                tobedeleted, node.right = Heap._remove_bottom_right(
+                    node.right, binary_num[1:])
+
+        return tobedeleted, node
+
+    @staticmethod
+    def _trickle(node):
+        if Heap._is_heap_satisfied(node):
+            pass
+        else:
+            if node.left is None and node.right is not None:
+                swap = node.value
+                node.value = node.right.value
+                node.right.value = swap
+                node.right = Heap._trickle(node.right)
+            elif node.left is not None and node.right is None:
+                swap = node.value
+                node.value = node.left.value
+                node.left.value = swap
+                node.left = Heap._trickle(node.left)
+            elif node.left.value <= node.right.value:
+                swap = node.value
+                node.value = node.left.value
+                node.left.value = swap
+                node.left = Heap._trickle(node.left)
+            elif node.left.value >= node.right.value:
+                swap = node.value
+                node.value = node.right.value
+                node.right.value = swap
+                node.right = Heap._trickle(node.right)
+            else:
+                pass
+        return node
