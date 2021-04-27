@@ -25,7 +25,7 @@ class Heap(BinaryTree):
         then each element of xs needs to be inserted into the Heap.
         '''
         super().__init__()
-        if xs is not None:
+        if xs:
             self.insert_list(list(xs))
 
     def __repr__(self):
@@ -62,21 +62,21 @@ class Heap(BinaryTree):
         FIXME:
         Implement this method.
         '''
-        leftret = True
-        rightret = True
+        left = True
+        right = True
         if node is None:
             return True
         if node.left is not None:
             if node.value > node.left.value:
                 return False
             else:
-                leftret = Heap._is_heap_satisfied(node.left)
+                left = Heap._is_heap_satisfied(node.left)
         if node.right is not None:
             if node.value > node.right.value:
                 return False
             else:
-                rightret = Heap._is_heap_satisfied(node.right)
-        return leftret and rightret
+                right = Heap._is_heap_satisfied(node.right)
+        return left and right
 
     def insert(self, value):
         '''
@@ -97,6 +97,44 @@ class Heap(BinaryTree):
         Create a @staticmethod helper function,
         following the same pattern used in the BST and AVLTree insert functions.
         '''
+        if self.root is not None:
+            leng = self.__len__()
+            binary_num = "{0:b}".format(leng + 1)[1:]
+            self.root = Heap._insert(value, self.root, binary_num)
+        else:
+            self.root = Node(value)
+
+    @staticmethod
+    def _insert(value, node, binary_num):
+        if binary_num[0] == '0':
+            if node.left is not None:
+                node.left = Heap._insert(value, node.left, binary_num[1:])
+            else:
+                node.left = Node(value)
+
+        if binary_num[0] == '1':
+            if node.right is not None:
+                node.right = Heap._insert(value, node.right, binary_num[1:])
+            else:
+                node.right = Node(value)
+
+        if binary_num[0] == '0':
+            if node.left.value < node.value:
+                swap = node.value
+                node.value = node.left.value
+                node.left.value = swap
+                return node
+            else:
+                return node
+
+        if binary_num[0] == '1':
+            if node.right.value < node.value:
+                swap = node.value
+                node.value = node.right.value
+                node.right.value = swap
+                return node
+            else:
+                return node
 
     def insert_list(self, xs):
         '''
@@ -105,6 +143,8 @@ class Heap(BinaryTree):
         FIXME:
         Implement this function.
         '''
+        for x in xs:
+            self.insert(x)
 
     def find_smallest(self):
         '''
@@ -113,6 +153,7 @@ class Heap(BinaryTree):
         FIXME:
         Implement this function.
         '''
+        return self.root.value
 
     def remove_min(self):
         '''
