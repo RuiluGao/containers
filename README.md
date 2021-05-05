@@ -9,4 +9,3 @@ Build status:
 1. [![](https://github.com/RuiluGao/containers/workflows/tests-BinaryTree/badge.svg)](https://github.com/RuiluGao/containers/actions?query=workflow%3Atests-BinaryTree)
 1. [![](https://github.com/RuiluGao/containers/workflows/tests-AVLTree/badge.svg)](https://github.com/RuiluGao/containers/actions?query=workflow%3Atests-AVLTree)
 1. [![](https://github.com/RuiluGao/containers/workflows/tests-Heap/badge.svg)](https://github.com/RuiluGao/containers/actions?query=workflow%3Atests-Heap)
->>>>>>> heap
