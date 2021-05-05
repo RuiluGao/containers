@@ -9,7 +9,7 @@ README = (HERE / "README.md").read_text()
 
 # This call to setup() does all the work
 setup(
-    name="cmc_csci046_rgao23",
+    name="cmc_csci046_rgao23_containers",
     version="1.0.0",
     description="CSCI046 HW -- Data Structures and Algorithms course package",
     long_description=README,
@@ -23,7 +23,7 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",
     ],
-    packages=find_packages(exclude=("tests")),
+    packages=["containers"],
     include_package_data=True,
     install_requires=["pytest", "hypothesis"],
 )
